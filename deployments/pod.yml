@@ -2,14 +2,14 @@ kind: # https://kubernetes.io/docs/concepts/workloads/pods/
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "myapp"
+  name: "nginx"
   namespace: default
   labels:
-    app: "myapp"
+    app: "my-pod-app"
 spec:
   containers:
-  - name: myapp
-    image: "debian-slim:latest"
+  - name: my-nginx-app
+    image: "nginx:latest"
     resources:
       limits:
         cpu: 200m
@@ -25,13 +25,5 @@ spec:
           key: DB_HOST
     ports:
     - containerPort: 80
-      name:  http
-    volumeMounts:
-    - name: localtime
-      mountPath: /etc/localtime
-  volumes:
-    - name: localtime
-      hostPath:
-        path: /usr/share/zoneinfo/Asia/Taipei
-  restartPolicy: Always
+
 ---
