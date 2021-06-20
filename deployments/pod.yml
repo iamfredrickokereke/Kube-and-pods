@@ -2,10 +2,11 @@ kind: # https://kubernetes.io/docs/concepts/workloads/pods/
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "nginx"
-  namespace: default
+  name: "nginx-new"
+  #namespace: default
   labels:
     app: "my-pod-app"
+    type: proxy
 spec:
   containers:
   - name: my-nginx-app
