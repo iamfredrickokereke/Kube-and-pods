@@ -2,10 +2,10 @@ kind: # https://kubernetes.io/docs/concepts/workloads/pods/
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "nginx-new"
-  #namespace: default
+  name: "nginx-server"
+  namespace: default
   labels:
-    app: "my-pod-app"
+    app: "myPad"
     type: proxy
 spec:
   containers:
@@ -18,12 +18,6 @@ spec:
       requests:
         cpu: 100m
         memory: 200Mi
-    env:
-    - name: DB_HOST
-      valueFrom:
-        configMapKeyRef:
-          name: myapp
-          key: DB_HOST
     ports:
     - containerPort: 80
 
