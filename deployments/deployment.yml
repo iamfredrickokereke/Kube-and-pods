@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: darey
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: deploy
+  template:
+    metadata:
+      labels:
+        os: ubuntu
+        editor: vscode
+        name: deploy
+    spec:
+      containers:
+        - name: ubuntu
+          image: "ubuntu:alpine"
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500m
+            requests:
+              cpu: 500m
+              memory: 500m
+          ports:
+            - containerPort: 8080
