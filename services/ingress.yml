@@ -4,16 +4,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: Ingress-service
+  #annotations
   namespace: default
 spec:
   rules:
-    - host: foo.local.com
+    - host: test.local
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: ServiceName
+                name: web-service
                 port:
                   number: 80
