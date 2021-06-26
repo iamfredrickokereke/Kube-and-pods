@@ -5,8 +5,9 @@ metadata:
 
 spec:
   replicas: 2
-  matchLabels:
-    tier: backend
+  selector:
+    matchLabels:
+      tier: backend
   template:
     metadata:
       labels:
