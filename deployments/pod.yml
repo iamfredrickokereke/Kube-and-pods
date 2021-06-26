@@ -20,5 +20,16 @@ spec:
         memory: 200Mi
     ports:
     - containerPort: 80
+  - name: my-nginx-app2
+    image: "nginx:latest"
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort: 80
 
 ---

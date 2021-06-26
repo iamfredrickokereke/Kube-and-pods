@@ -5,5 +5,5 @@ while(true); do
   clear
   OUTPUT=`$ARGS`
   echo -e "${OUTPUT[@]}"
-  sleep 1
+  sleep 2
 done

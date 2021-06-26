@@ -1,50 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: multi-container-app
-  namespace: default
+  name: testapp
   labels:
-    app: multi-container-app
+    name: testapp
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      app: multi-container-app
-  replicas: 2
+      name: testapp
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 1
+      maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: multi-container-app
+        name: testapp
     spec:
-      # initContainers:
-      # Init containers are exactly like regular containers, except:
-      # - Init containers always run to completion.
-      # - Each init container must complete successfully before the next one starts.
       containers:
-        - name: nginx-server
-          image: nginx:alpine
+        - image: nginx:alpine
+          name: nginx
           resources:
-            limits:
-              cpu: 100m
-              memory: 100Mi
+            requests:
+              cpu: "20m"
+              memory: "55M"
           ports:
-            - containerPort: 80
-              name: nginx-app
-        - name: ubuntu-server
-          image: ubuntu:alpine
+            - containerPort: 5000
+
+        - image: ubuntu:alpine
+          name: ubuntu
           resources:
-            limits:
-              cpu: 100m
-              memory: 100Mi
+            requests:
+              cpu: "20m"
+              memory: "55M"
           ports:
-            - containerPort: 80
-              name: server-app
-          command:
-            - sleep
-            - "3600"
+            - containerPort: 6000
 
       restartPolicy: Always
+      #imagePullPolicy: Always
