@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: server-deploy
+  labels:
+    name: server-deploy
 
 spec:
   replicas: 2
@@ -11,9 +13,14 @@ spec:
   template:
     metadata:
       labels:
-        editor: vscode
         tier: backend
     spec:
       containers:
         - name: nginx
-          image: nginx:alpine
+          image: httpd:2.4-alpine
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80

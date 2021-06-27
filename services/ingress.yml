@@ -3,12 +3,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: Ingress-service
+  name: ingress-web-service
+  labels:
+    name: ingress-web-service
   #annotations
-  namespace: default
+
 spec:
   rules:
-    - host: test.local
+    - host: mytest.local
       http:
         paths:
           - path: /
@@ -17,4 +19,4 @@ spec:
               service:
                 name: web-service
                 port:
-                  number: 80
+                  number: 8080
