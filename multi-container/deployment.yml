@@ -37,6 +37,9 @@ spec:
               memory: "55M"
           ports:
             - containerPort: 6000
+          command:
+            - sleep
+            - "3600"
 
       restartPolicy: Always
       #imagePullPolicy: Always
